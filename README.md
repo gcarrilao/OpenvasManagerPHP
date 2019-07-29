@@ -11,7 +11,6 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
 <get_version/>
 
 #### true, query example
-
 <create_task>
   <name>Scan Webserver</name>
   <comment>Hourly scan of the webserver</comment>
