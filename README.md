@@ -2,6 +2,11 @@
 
 Es un middleware entre una aplicación PHP y el OMP de openvas
 
+### Authors
+
+Federico Carrilao : federicoca95@gmail.com
+Facundo Gregorini : gregojff@gmail.com
+
 ### Complexity
 
 #### false, simple query example
