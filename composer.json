@@ -15,5 +15,10 @@
             "email": "gregojff@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "Openvas": "src/"
+        }
+    },
     "minimum-stability": "dev"
 }
