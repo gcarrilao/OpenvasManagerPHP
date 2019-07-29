@@ -1,24 +1,20 @@
 {
-    "name": "gcarrilao/php-openvas-middleware",
-    "description": "Es un middleware entre una aplicación PHP y el OMP 6.0 de openvas",
+    "name": "gcarrilao/php-openvas-manager",
+    "description": "Middleware between PHP and OpenVas Manager Protocol",
+    "license": "GLP V3.0",
     "require": {
         "php": ">=5.6.0",
     },
-    "license": "GLP v3.0",
     "authors": [
         {
-            "name": "Guillermo Federico Carrilao Avila",
+            "name": "Federico Carrilao",
             "email": "federicoca95@gmail.com"
         },
         {
-            "name": "Juan Facundo Gregorini",
+            "name": "Facundo Gregorini",
             "email": "gregojff@gmail.com"
         }
     ],
     "minimum-stability": "dev",
-    "autoload": {
-        "psr-0": {
-            "Openvas": "src/"
-        }
-    },
+    "require": {}
 }
