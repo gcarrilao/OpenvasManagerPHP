@@ -1,7 +1,7 @@
 {
     "name": "gcarrilao/php-openvas-manager",
     "description": "Middleware between PHP and OpenVas Manager Protocol",
-    "license": "GNU General Public License v3.0 only",
+    "license": "gpl-3.0",
     "require": {
         "php": ">=5.6.0"
     },
