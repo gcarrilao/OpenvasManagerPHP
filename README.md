@@ -20,6 +20,8 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
   <scanner id="15348381-3180-213f-4eec-123591912388"/>
 </create_task>
 
+<script> </script>
+
 <create_target>
   <name>All GNU/Linux machines</name>
   <hosts>192.168.1.0/24</hosts>
