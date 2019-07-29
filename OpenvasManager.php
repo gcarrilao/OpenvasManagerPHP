@@ -127,14 +127,40 @@ class OpenvasManager {
 			return $this->getCmd($cmd);
 		}
 
+		public function create_task($name,$comment,$options){
+			$name = "<name>$name</name>";
+			$comment ="<comment>$comment</comment>";
+			$cmd ="<create_task> " .
+			 		"$name".
+					"$hosts";
+			foreach ($options as $clave=>$valor){
+					$cmd.=" <$clave id=\"$valor\"/> ";
+			}
+			$cmd.="</create_task>";
+			print($cmd);
+			return $this->getCmd($cmd);
+		}
 }
 
 $ov = new OpenvasManager("localhost","9390","admin","admin");
 
 print_r($ov->get_version());
 
+
 $options= array(
 	"target_id" => "852544d1-9323-447e-b449-bc19f293019b",
 );
 print_r($ov->get_targets($options));
-print_r($ov->create_target("Maquina facu","10.3.8.199"));
+#print_r($ov->create_target("Maquina facu","10.3.8.199"));
+
+$options= array(
+		"target" => "0aeba03c-86cb-477b-9656-d4fe9cff6c60",
+		"config" => "74db13d6-7489-11df-91b9-002264764cea",
+);
+#print_r($ov->create_task("Task-user:admin","Tarea portal",$options));
+
+
+$options= array(
+		"task_id" => "885f09e1-5a42-4aa5-a932-bae3d8adb8db"
+);
+print_r($ov->start_task($options));
