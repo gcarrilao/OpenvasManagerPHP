@@ -89,96 +89,68 @@ class OpenvasManager {
 		return $response;
 	}
 
-	 /*
-	 * Magic method to allow calls to be constructed via
-	 * method chaining. ie: $call->get_version
-	 * result in a endpoint location of <get_version/>.
-	 * @param   string   $location The api endpoint to call.
-	 * @param   string[] $slug     Any arguments to parse as part of the location
-	 */
-		public function __call($command, $options)
-		{
-				//Verificar status
-				if(count($options) > 0){
-					if(!($options[0]["complexity"])){
-						$cmd = $this->simple_query($command,$options[0]);
-					}
-					else{
-						$cmd = $this->complex_query($command,$options[0]);
-					}
-				}
-				else {
-					$cmd ="<$command/>";
-				}
-				return $this->getCmd($cmd);
-		}
-
-		public function complex_query($command,$options){
-			$cmd="<$command>";
-			unset($options["complexity"]);
-			foreach ($options as $clave=>$valor){
-				if(is_array($valor)){
-						$cmd.="<$clave ";
-						foreach($valor as $v){
-							$cmd.=$v;
-						}
-						$cmd.=" />";
+ /*
+ * Magic method to allow calls to be constructed via
+ * method chaining. ie: $call->get_version
+ * result in a endpoint location of <get_version/>.
+ * @param   string   $location The api endpoint to call.
+ * @param   string[] $slug     Any arguments to parse as part of the location
+ */
+	public function __call($command, $options)
+	{
+			//Verificar status
+			if(count($options) > 0){
+				if(!($options[0]["complexity"])){
+					$cmd = $this->simple_query($command,$options[0]);
 				}
 				else{
-						$cmd.=" <$clave>$valor</$clave> ";
+					$cmd = $this->complex_query($command,$options[0]);
 				}
 			}
-			$cmd.="</$command>";
-			return $cmd;
-		}
-
-		public function simple_query($command,$options){
-			$cmd = "<$command ";
-			unset($options["complexity"]);
-			foreach($options as $clave=>$valor){
-				$cmd.="$clave=\"$valor\"";
+			else {
+				$cmd ="<$command/>";
 			}
-			$cmd.=" />";
-			print($cmd);
-			return $cmd;
-		}
-		public function create_target_old($name,$hosts){
-			$name = "<name>$name</name>";
-			$hosts ="<hosts>$hosts</hosts>";
-			$cmd ="<create_target> " .
-			 		"$name".
-					"$hosts".
-					"</create_target>";
 			print($cmd);
 			return $this->getCmd($cmd);
-		}
+	}
 
-		public function create_task_old($name,$comment,$options){
-			$name = "<name>$name</name>";
-			$comment ="<comment>$comment</comment>";
-			$cmd ="<create_task> " .
-			 		"$name".
-					"$hosts";
-			foreach ($options as $clave=>$valor){
-					$cmd.=" <$clave id=\"$valor\"/> ";
+	public function complex_query($command,$options){
+		$cmd="<$command>";
+		unset($options["complexity"]);
+		foreach ($options as $clave=>$valor){
+			if(is_array($valor)){
+					$cmd.= $this->simple_query($clave,$valor);
 			}
-			$cmd.="</create_task>";
-			print($cmd);
-			return $this->getCmd($cmd);
+			else{
+					$cmd.=" <$clave>$valor</$clave> ";
+			}
 		}
+		$cmd.="</$command>";
+		return $cmd;
+	}
+
+	public function simple_query($command,$options){
+		$cmd = "<$command ";
+		unset($options["complexity"]);
+		foreach($options as $clave=>$valor){
+			$cmd.="$clave=\"$valor\"";
+		}
+		$cmd.=" />";
+		return $cmd;
+	}
 }
 
 $ov = new OpenvasManager("localhost","9390","admin","admin");
 
-print_r($ov->get_version());
+#print_r($ov->get_version());
 
 
 $options= array(
 	"complexity" => false,
-	"target_id" => "1f28d970-17ef-4c69-ba8a-13827059f2b9",
+	"target_id" => "2e0b354e-c410-4dd6-90ba-b71156887838",
 );
 
-print_r($ov->get_targets($options));
+#print_r($ov->get_targets($options));
 
 $options= array(
 	"complexity" => true,
@@ -191,14 +163,20 @@ $options= array(
 		"complexity" => true,
 		"name" => "Tarea nueva",
 		"comment" => "Tarea portal",
-		"target" => array('id="0aeba03c-86cb-477b-9656-d4fe9cff6c60"'),
-		"config" => array('id="74db13d6-7489-11df-91b9-002264764cea"'),
+		"target" => array( "id" =>"0aeba03c-86cb-477b-9656-d4fe9cff6c60"),
+		"config" => array( "id" =>"74db13d6-7489-11df-91b9-002264764cea"),
 );
 #print_r($ov->create_task($options));
-#print_r($ov->create_task("Task-user:admin","Tarea portal",$options));
-
 
 $options= array(
-		"task_id" => "885f09e1-5a42-4aa5-a932-bae3d8adb8db"
+		"task_id" => "225eee06-b029-4bed-8b83-ab4cf7943a63",
 );
+
 #print_r($ov->start_task($options));
+
+$options= array(
+	"complexity" => False,
+	"report_id" => "92a80a0a-bf25-4927-ae99-f8a9d5e3ed9d",
+);
+
+#print_r($ov->get_reports($options));
