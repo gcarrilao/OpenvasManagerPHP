@@ -15,9 +15,10 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
   <name>Scan Webserver</name>
   <comment>Hourly scan of the webserver</comment>
   <config id="daba56c8-73ec-11df-a475-002264764cea"/>
-  <target id="b493b7a8-7489-11df-a3ec-002264764cea"/>
+  <target id="b493b7a8-7489-11df-a3ec-002264764cea" />
   <scanner id="15348381-3180-213f-4eec-123591912388"/>
 </create_task>
+
 
 <create_target>
   <name>All GNU/Linux machines</name>
