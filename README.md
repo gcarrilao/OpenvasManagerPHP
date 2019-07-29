@@ -30,23 +30,23 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
 ## Use mode
 
 #### Get version
-
+```php
 $ov = new OpenvasManager("localhost","9390","admin","admin");
 
 print_r($ov->get_version());
 
-
+```
 #### Get target
-
+```php
 $options= array(
 	"complexity" => false,
 	"target_id" => "2e0b354e-c410-4dd6-90ba-b71156887838",
 );
 
 print_r($ov->get_targets($options));
-
+```
 #### Create target
-
+```php
 $options= array(
 	"complexity" => true,
 	"name" => "Maquina 2",
@@ -55,9 +55,9 @@ $options= array(
 
 
 print_r($ov->create_target($options));
-
+```
 #### Create task
-
+```php
 $options= array(
 		"complexity" => true,
 		"name" => "Tarea nueva",
@@ -67,20 +67,21 @@ $options= array(
 );
 
 print_r($ov->create_task($options));
-
+```
 #### Start task
-
+```php
 $options= array(
 		"task_id" => "225eee06-b029-4bed-8b83-ab4cf7943a63",
 );
 
 print_r($ov->start_task($options));
-
+```
 #### Get report
-
+```php
 $options= array(
 	"complexity" => False,
 	"report_id" => "92a80a0a-bf25-4927-ae99-f8a9d5e3ed9d",
 );
 
 print_r($ov->get_reports($options));
+```
