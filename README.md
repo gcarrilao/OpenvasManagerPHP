@@ -50,7 +50,7 @@ print_r($ov->get_targets($options));
 $options= array(
 	"complexity" => true,
 	"name" => "Maquina 2",
-	"hosts" => "10.3.8.196",
+	"hosts" => "175.23.3.196",
 );
 
 
@@ -61,7 +61,7 @@ print_r($ov->create_target($options));
 $options= array(
 		"complexity" => true,
 		"name" => "Tarea nueva",
-		"comment" => "Tarea portal",
+		"comment" => "Tarea",
 		"target" => array( "id" =>"0aeba03c-86cb-477b-9656-d4fe9cff6c60"),
 		"config" => array( "id" =>"74db13d6-7489-11df-91b9-002264764cea"),
 );
