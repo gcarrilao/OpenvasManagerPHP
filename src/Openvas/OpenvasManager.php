@@ -7,7 +7,7 @@
  	*
  */
 
-namespace Openvas
+namespace Openvas;
 
 class OpenvasManager {
 
