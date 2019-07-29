@@ -89,15 +89,23 @@ class OpenvasManager {
 		return $response;
 	}
 
-	/*
-		get version
-	*/
+	 /*
+     Magic method to allow calls to be constructed via
+	 * method chaining. ie: $call->get_version
+	 * result in a endpoint location of <get_version/>.
+	 * @param   string   $location The api endpoint to call.
+	 * @param   string[] $slug     Any arguments to parse as part of the location
+	 */
+		public function __call($location, $slug)
+		{
+				//Verificar status
+				return $this->getCmd("<$location/>");
 
-	function getVersion(){
-		return $this->getCmd("<get_version/>");
-	}
+		}
+
 
 }
 
 $ov = new OpenvasManager("localhost","9390","admin","admin");
-print_r($ov->getVersion());
+print_r($ov->get_version());
+print_r($ov->get_scans());
