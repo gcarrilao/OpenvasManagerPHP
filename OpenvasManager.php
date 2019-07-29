@@ -85,12 +85,12 @@ class OpenvasManager {
 		$this->autenticate($cx);
 		fwrite($cx,$cmd);
 		$response = $this->read_stream_to_buffer($cx);
-		$response = simplexml_load_string($response);
+		$response = json_decode(json_encode(simplexml_load_string($response)));
 		return $response;
 	}
 
 	 /*
-     Magic method to allow calls to be constructed via
+	 * Magic method to allow calls to be constructed via
 	 * method chaining. ie: $call->get_version
 	 * result in a endpoint location of <get_version/>.
 	 * @param   string   $location The api endpoint to call.
