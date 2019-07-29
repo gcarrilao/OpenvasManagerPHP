@@ -1,19 +1,40 @@
-## Openvas PHP Communicator
+# Openvas PHP Communicator
 
 Es un middleware entre una aplicación PHP y el OMP de openvas
 
+## Complexity
 
-## Modo de uso
+#### false, query example
 
+<get_reports report_id="f0fdf522-276d-4893-9274-fb8699dc2270"/>
 
-##### Get version
+<get_version/>
+
+#### true, query example
+
+<create_task>
+  <name>Scan Webserver</name>
+  <comment>Hourly scan of the webserver</comment>
+  <config id="daba56c8-73ec-11df-a475-002264764cea"/>
+  <target id="b493b7a8-7489-11df-a3ec-002264764cea"/>
+  <scanner id="15348381-3180-213f-4eec-123591912388"/>
+</create_task>
+
+<create_target>
+  <name>All GNU/Linux machines</name>
+  <hosts>192.168.1.0/24</hosts>
+</create_target>
+
+## Use mode
+
+#### Get version
 
 $ov = new OpenvasManager("localhost","9390","admin","admin");
 
 print_r($ov->get_version());
 
 
-##### Get target
+#### Get target
 
 $options= array(
 	"complexity" => false,
@@ -22,7 +43,7 @@ $options= array(
 
 print_r($ov->get_targets($options));
 
-##### Create target
+#### Create target
 
 $options= array(
 	"complexity" => true,
@@ -33,7 +54,7 @@ $options= array(
 
 print_r($ov->create_target($options));
 
-##### Create task
+#### Create task
 
 $options= array(
 		"complexity" => true,
@@ -45,7 +66,7 @@ $options= array(
 
 print_r($ov->create_task($options));
 
-##### Start task
+#### Start task
 
 $options= array(
 		"task_id" => "225eee06-b029-4bed-8b83-ab4cf7943a63",
@@ -53,7 +74,7 @@ $options= array(
 
 print_r($ov->start_task($options));
 
-##### Get report
+#### Get report
 
 $options= array(
 	"complexity" => False,
