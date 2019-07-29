@@ -96,16 +96,45 @@ class OpenvasManager {
 	 * @param   string   $location The api endpoint to call.
 	 * @param   string[] $slug     Any arguments to parse as part of the location
 	 */
-		public function __call($location, $slug)
+		public function __call($command, $options)
 		{
 				//Verificar status
-				return $this->getCmd("<$location/>");
+				$parameters = " ";
+				if(count($options) > 0){
+					foreach($options[0] as $clave => $valor){
+							if(is_string($valor)){
+								$parameters .= "$clave=\"$valor\" ";
+						  }
+							else{
+								$parameters .= "$clave=$valor ";
+
+							}
+					}
+				}
+				$cmd ="<$command $parameters/>";
+				return $this->getCmd($cmd);
 
 		}
 
+		public function create_target($name,$hosts){
+			$name = "<name>$name</name>";
+			$hosts ="<hosts>$hosts</hosts>";
+			$cmd ="<create_target> " .
+			 		"$name".
+					"$hosts".
+					"</create_target>";
+			print($cmd);
+			return $this->getCmd($cmd);
+		}
 
 }
 
 $ov = new OpenvasManager("localhost","9390","admin","admin");
+
 print_r($ov->get_version());
-print_r($ov->get_scans());
+
+$options= array(
+	"target_id" => "852544d1-9323-447e-b449-bc19f293019b",
+);
+print_r($ov->get_targets($options));
+print_r($ov->create_target("Maquina facu","10.3.8.199"));
