@@ -5,12 +5,14 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
 ## Complexity
 
 #### false, query example
-
+```xml
 <get_reports report_id="f0fdf522-276d-4893-9274-fb8699dc2270"/>
-
+```
+```xml
 <get_version/>
-
+```
 #### true, query example
+```xml
 <create_task>
   <name>Scan Webserver</name>
   <comment>Hourly scan of the webserver</comment>
@@ -18,13 +20,13 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
   <target id="b493b7a8-7489-11df-a3ec-002264764cea" />
   <scanner id="15348381-3180-213f-4eec-123591912388"/>
 </create_task>
-
-
+```
+```xml
 <create_target>
   <name>All GNU/Linux machines</name>
   <hosts>192.168.1.0/24</hosts>
 </create_target>
-
+```
 ## Use mode
 
 #### Get version
