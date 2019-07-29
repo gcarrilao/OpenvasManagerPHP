@@ -5,12 +5,13 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
 ## Complexity
 
 #### false, simple query example
-
+```xml
 <get_reports report_id="f0fdf522-276d-4893-9274-fb8699dc2270"/>
 
 <get_version/>
-
+```
 #### true, complex query example
+```xml
 <create_task>
   <name>Scan Webserver</name>
   <comment>Hourly scan of the webserver</comment>
@@ -24,17 +25,18 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
   <name>All GNU/Linux machines</name>
   <hosts>192.168.1.0/24</hosts>
 </create_target>
-
+```
 ## Use mode
 
 #### Get version
-
+```php
 $ov = new OpenvasManager("localhost","9390","admin","admin");
 
 print_r($ov->get_version());
 
-
+```
 #### Get target
+```php
 
 $options= array(
 	"complexity" => false,
@@ -42,8 +44,9 @@ $options= array(
 );
 
 print_r($ov->get_targets($options));
-
+```
 #### Create target
+```php
 
 $options= array(
 	"complexity" => true,
@@ -53,8 +56,9 @@ $options= array(
 
 
 print_r($ov->create_target($options));
-
+```
 #### Create task
+```php
 
 $options= array(
 		"complexity" => true,
@@ -63,18 +67,20 @@ $options= array(
 		"target" => array( "id" =>"0aeba03c-86cb-477b-9656-d4fe9cff6c60"),
 		"config" => array( "id" =>"74db13d6-7489-11df-91b9-002264764cea"),
 );
-
+```
 print_r($ov->create_task($options));
 
 #### Start task
+```php
 
 $options= array(
 		"task_id" => "225eee06-b029-4bed-8b83-ab4cf7943a63",
 );
-
+```
 print_r($ov->start_task($options));
 
 #### Get report
+```php
 
 $options= array(
 	"complexity" => False,
@@ -82,3 +88,4 @@ $options= array(
 );
 
 print_r($ov->get_reports($options));
+```
