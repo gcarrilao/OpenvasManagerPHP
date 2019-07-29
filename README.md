@@ -67,8 +67,8 @@ $options= array(
 		"target" => array( "id" =>"0aeba03c-86cb-477b-9656-d4fe9cff6c60"),
 		"config" => array( "id" =>"74db13d6-7489-11df-91b9-002264764cea"),
 );
-```
 print_r($ov->create_task($options));
+```
 
 #### Start task
 ```php
