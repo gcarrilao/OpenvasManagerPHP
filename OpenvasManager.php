@@ -99,24 +99,50 @@ class OpenvasManager {
 		public function __call($command, $options)
 		{
 				//Verificar status
-				$parameters = " ";
 				if(count($options) > 0){
-					foreach($options[0] as $clave => $valor){
-							if(is_string($valor)){
-								$parameters .= "$clave=\"$valor\" ";
-						  }
-							else{
-								$parameters .= "$clave=$valor ";
-
-							}
+					if(!($options[0]["complexity"])){
+						$cmd = $this->simple_query($command,$options[0]);
+					}
+					else{
+						$cmd = $this->complex_query($command,$options[0]);
 					}
 				}
-				$cmd ="<$command $parameters/>";
+				else {
+					$cmd ="<$command/>";
+				}
 				return $this->getCmd($cmd);
-
 		}
 
-		public function create_target($name,$hosts){
+		public function complex_query($command,$options){
+			$cmd="<$command>";
+			unset($options["complexity"]);
+			foreach ($options as $clave=>$valor){
+				if(is_array($valor)){
+						$cmd.="<$clave ";
+						foreach($valor as $v){
+							$cmd.=$v;
+						}
+						$cmd.=" />";
+				}
+				else{
+						$cmd.=" <$clave>$valor</$clave> ";
+				}
+			}
+			$cmd.="</$command>";
+			return $cmd;
+		}
+
+		public function simple_query($command,$options){
+			$cmd = "<$command ";
+			unset($options["complexity"]);
+			foreach($options as $clave=>$valor){
+				$cmd.="$clave=\"$valor\"";
+			}
+			$cmd.=" />";
+			print($cmd);
+			return $cmd;
+		}
+		public function create_target_old($name,$hosts){
 			$name = "<name>$name</name>";
 			$hosts ="<hosts>$hosts</hosts>";
 			$cmd ="<create_target> " .
@@ -127,7 +153,7 @@ class OpenvasManager {
 			return $this->getCmd($cmd);
 		}
 
-		public function create_task($name,$comment,$options){
+		public function create_task_old($name,$comment,$options){
 			$name = "<name>$name</name>";
 			$comment ="<comment>$comment</comment>";
 			$cmd ="<create_task> " .
@@ -148,19 +174,31 @@ print_r($ov->get_version());
 
 
 $options= array(
-	"target_id" => "852544d1-9323-447e-b449-bc19f293019b",
+	"complexity" => false,
+	"target_id" => "1f28d970-17ef-4c69-ba8a-13827059f2b9",
 );
+
 print_r($ov->get_targets($options));
-#print_r($ov->create_target("Maquina facu","10.3.8.199"));
 
 $options= array(
-		"target" => "0aeba03c-86cb-477b-9656-d4fe9cff6c60",
-		"config" => "74db13d6-7489-11df-91b9-002264764cea",
+	"complexity" => true,
+	"name" => "Maquina 2",
+	"hosts" => "10.3.8.196",
 );
+#print_r($ov->create_target($options));
+
+$options= array(
+		"complexity" => true,
+		"name" => "Tarea nueva",
+		"comment" => "Tarea portal",
+		"target" => array('id="0aeba03c-86cb-477b-9656-d4fe9cff6c60"'),
+		"config" => array('id="74db13d6-7489-11df-91b9-002264764cea"'),
+);
+#print_r($ov->create_task($options));
 #print_r($ov->create_task("Task-user:admin","Tarea portal",$options));
 
 
 $options= array(
 		"task_id" => "885f09e1-5a42-4aa5-a932-bae3d8adb8db"
 );
-print_r($ov->start_task($options));
+#print_r($ov->start_task($options));
