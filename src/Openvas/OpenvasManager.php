@@ -7,6 +7,8 @@
  	*
  */
 
+namespace Openvas
+
 class OpenvasManager {
 
 	private $host;
