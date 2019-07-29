@@ -1,8 +1,8 @@
-# Openvas PHP Communicator
+## Openvas PHP Communicator
 
 Es un middleware entre una aplicación PHP y el OMP de openvas
 
-## Complexity
+### Complexity
 
 #### false, simple query example
 ```xml
@@ -26,7 +26,7 @@ Es un middleware entre una aplicación PHP y el OMP de openvas
   <hosts>192.168.1.0/24</hosts>
 </create_target>
 ```
-## Use mode
+### Use mode
 
 #### Get version
 ```php
