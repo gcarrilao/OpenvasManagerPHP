@@ -3,7 +3,7 @@
     "description": "Middleware between PHP and OpenVas Manager Protocol",
     "license": "GLP V3.0",
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=5.6.0"
     },
     "authors": [
         {
