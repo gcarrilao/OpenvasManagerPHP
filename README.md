@@ -1,4 +1,4 @@
-# Openvas PHP Communicator
+# Openvas PHP Middleware
 
 Es un middleware entre una aplicación PHP y el OMP de openvas
 
