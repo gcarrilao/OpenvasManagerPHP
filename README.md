@@ -1,6 +1,6 @@
 ## Openvas PHP Communicator
 
-Es un middleware entre una aplicación PHP y el OMP de openvas
+A middleware between a PHP application and Openvas Manager Protocol.
 
 ### Authors
 
@@ -8,6 +8,8 @@ Federico Carrilao : federicoca95@gmail.com
 Facundo Gregorini : gregojff@gmail.com
 
 ### Complexity
+
+Exist a defined complexity between simples and complex xml's. All querys are created with reflection.
 
 #### false, simple query example
 ```xml
@@ -67,8 +69,8 @@ print_r($ov->create_target($options));
 
 $options= array(
 		"complexity" => true,
-		"name" => "Tarea nueva",
-		"comment" => "Tarea portal",
+		"name" => "New task",
+		"comment" => "Test Task",
 		"target" => array( "id" =>"0aeba03c-86cb-477b-9656-d4fe9cff6c60"),
 		"config" => array( "id" =>"74db13d6-7489-11df-91b9-002264764cea"),
 );
