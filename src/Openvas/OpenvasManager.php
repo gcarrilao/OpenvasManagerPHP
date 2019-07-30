@@ -55,9 +55,8 @@ class OpenvasManager {
 		 * Connect to OpenVAS with SSL/TLS
 		 */
 		$fp = stream_socket_client('ssl://' . $this->host . ':' . $this->port, $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $context);
- 		if ($errno){
- 					print("sendToOpenvas: The connection to openVAS failed, because of Error: (" . $errno . ") " . $errstr);
-					exit();
+		if ($errno){
+ 					throw new Exception("sendToOpenvas: The connection to openVAS failed, because of Error: (" . $errno . ") " . $errstr);
  		}
 		return $fp;
 	}
