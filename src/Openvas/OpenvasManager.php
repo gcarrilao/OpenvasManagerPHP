@@ -150,4 +150,29 @@ class OpenvasManager {
 		$cmd.=" />";
 		return $cmd;
 	}
+
+	private function get_string_between($string, $start, $end){
+		$string = ' ' . $string;
+		$ini = strpos($string, $start);
+		if ($ini == 0) return '';
+		$ini += strlen($start);
+		$len = strpos($string, $end, $ini) - $ini;
+		return substr($string, $ini, $len);
+	}
+
+	public function get_report_csv($report_id){
+		$options= array(
+			"complexity" => False,
+			"report_id" => $report_id,
+			"format_id" => "c1645568-627a-11e3-a660-406186ea4fc5"
+		);
+		$cmd=$this->simple_query("get_reports",$options);
+		$cx = $this->get_connection();
+		$this->autenticate($cx);
+		fwrite($cx,$cmd);
+		$response = $this->read_stream_to_buffer($cx);
+		$response = $this->get_string_between($response,"</report_format>","</report>");
+		$response = base64_decode($response);
+		return ($response);
+	}
 }
