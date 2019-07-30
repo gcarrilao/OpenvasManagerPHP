@@ -2,15 +2,15 @@
 
 /**
  	* @author   Guillermo Federico Carrilao Avila (https://github.com/gcarrilao)
-	* @author   Juan Facundo Gregorini (https://github.com/gregojff)
+	* @author   Juan Facundo Gregorini (https://github.com/FacundoGregorini)
  	* @license     GPL v3.0
  	*
  */
 
 namespace Openvas;
+use \Exception;
 
 class OpenvasManager {
-
 	private $host;
 	private $port;
 	private $username;
@@ -21,12 +21,15 @@ class OpenvasManager {
 
 	*/
 	function __construct ($host,$port,$username,$password){
-
-		$this->host=$host;
-		$this->port=$port;
-		$this->username=$username;
-		$this->password=$password;
-
+		if (($host == "") or ($port == "") or ($username == "")){
+		throw new Exception("error: all fields are required");
+			exit();
+		} else {
+			$this->host=$host;
+			$this->port=$port;
+			$this->username=$username;
+			$this->password=$password;
+		}
 	}
 
 	/*
@@ -52,13 +55,12 @@ class OpenvasManager {
 		 * Connect to OpenVAS with SSL/TLS
 		 */
 		$fp = stream_socket_client('ssl://' . $this->host . ':' . $this->port, $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $context);
-		if ($errno) {
-				throw new Exception("sendToOpenvas: The connection to openVAS failed, because of Error: (" . $errno . ") " . $errstr);
-		}
-
-		return $fp;
-
+ 		if ($errno){
+ 					print("sendToOpenvas: The connection to openVAS failed, because of Error: (" . $errno . ") " . $errstr);
+					exit();
+ 		}
 	}
+
 
 	private function read_stream_to_buffer($fp, $length = 8192) {
 	    $response = "";
@@ -149,3 +151,6 @@ class OpenvasManager {
 		return $cmd;
 	}
 }
+
+$asd = new OpenvasManager("10.3.8.210", "", "admin", "admin");
+print_r($ov->get_version());
