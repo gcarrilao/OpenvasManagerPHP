@@ -96,3 +96,11 @@ $options= array(
 
 print_r($ov->get_reports($options));
 ```
+
+#### Get report in CSV
+
+```php
+$ov->get_report_csv("92a80a0a-bf25-4927-ae99-f8a9d5e3ed9d");
+```
+
+
