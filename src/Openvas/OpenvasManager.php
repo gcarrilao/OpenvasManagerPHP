@@ -22,7 +22,7 @@ class OpenvasManager {
 	*/
 	function __construct ($host,$port,$username,$password){
 		if (($host == "") or ($port == "") or ($username == "")){
-		throw new Exception("error: all fields are required");
+					throw new Exception("error: all fields are required");
 			exit();
 		} else {
 			$this->host=$host;
@@ -59,6 +59,7 @@ class OpenvasManager {
  					print("sendToOpenvas: The connection to openVAS failed, because of Error: (" . $errno . ") " . $errstr);
 					exit();
  		}
+		return $fp;
 	}
 
 
@@ -89,7 +90,9 @@ class OpenvasManager {
 		$this->autenticate($cx);
 		fwrite($cx,$cmd);
 		$response = $this->read_stream_to_buffer($cx);
-		$response = json_decode(json_encode(simplexml_load_string($response)));
+		$response = simplexml_load_string($response);
+		print_r($response);
+		$response = json_decode(json_encode($response));
 		return $response;
 	}
 
@@ -151,6 +154,3 @@ class OpenvasManager {
 		return $cmd;
 	}
 }
-
-$asd = new OpenvasManager("10.3.8.210", "", "admin", "admin");
-print_r($ov->get_version());
