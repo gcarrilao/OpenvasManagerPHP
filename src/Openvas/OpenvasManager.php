@@ -151,6 +151,10 @@ class OpenvasManager {
 		return $cmd;
 	}
 
+	/*
+		Get substring between two string
+	*/
+
 	private function get_string_between($string, $start, $end){
 		$string = ' ' . $string;
 		$ini = strpos($string, $start);
@@ -159,6 +163,9 @@ class OpenvasManager {
 		$len = strpos($string, $end, $ini) - $ini;
 		return substr($string, $ini, $len);
 	}
+	/*
+		Get report csv
+	*/
 
 	public function get_report_csv($report_id){
 		$options= array(
