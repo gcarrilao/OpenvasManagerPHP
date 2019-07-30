@@ -22,7 +22,7 @@ class OpenvasManager {
 	*/
 	function __construct ($host,$port,$username,$password){
 		if (($host == "") or ($port == "") or ($username == "")){
-					throw new Exception("error: all fields are required");
+		throw new Exception("error: all fields are required");
 			exit();
 		} else {
 			$this->host=$host;
@@ -90,9 +90,7 @@ class OpenvasManager {
 		$this->autenticate($cx);
 		fwrite($cx,$cmd);
 		$response = $this->read_stream_to_buffer($cx);
-		$response = simplexml_load_string($response);
-		print_r($response);
-		$response = json_decode(json_encode($response));
+		$response = json_decode(json_encode(simplexml_load_string($response)));
 		return $response;
 	}
 
