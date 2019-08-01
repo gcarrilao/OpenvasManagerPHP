@@ -6,7 +6,7 @@ use Openvas\OpenvasManager;
 
 $ov = new OpenvasManager("localhost","9390","admin","admin");
 
-//print_r($ov->get_version());
+print_r($ov->get_version());
 
 
 $options= array(

@@ -9,13 +9,34 @@ Facundo Gregorini : gregojff@gmail.com
 
 ### Complexity
 
-Exist a defined complexity between simples and complex xml's. All querys are created with reflection.
+Exist a defined complexity between simples and complex xml's. All querys are created with reflection. If the query doesnt have parameters it's not necesary specific the complexity.
+
+#### without complexity
+
+```xml
+<get_version/>
+```
+
+```php
+
+print_r($ov->get_version());
+
+```
 
 #### false, simple query example
 ```xml
+
 <get_reports report_id="f0fdf522-276d-4893-9274-fb8699dc2270"/>
 
-<get_version/>
+```
+```php
+
+$options= array(
+	"complexity" => False,
+	"report_id" => "92a80a0a-bf25-4927-ae99-f8a9d5e3ed9d",
+);
+
+print_r($ov->get_reports($options));
 ```
 #### true, complex query example
 ```xml
@@ -33,6 +54,29 @@ Exist a defined complexity between simples and complex xml's. All querys are cre
   <hosts>192.168.1.0/24</hosts>
 </create_target>
 ```
+
+```php
+
+$options= array(
+		"complexity" => true,
+		"name" => "New task",
+		"comment" => "Test Task",
+		"target" => array( "id" =>"0aeba03c-86cb-477b-9656-d4fe9cff6c60"),
+		"config" => array( "id" =>"74db13d6-7489-11df-91b9-002264764cea"),
+);
+print_r($ov->create_task($options));
+
+$options= array(
+	"complexity" => true,
+	"name" => "Maquina 2",
+	"hosts" => "10.3.8.196",
+);
+
+
+print_r($ov->create_target($options));
+
+
+```
 ### Use mode
 
 The methods work as follows: The __call method was redefined. When a method does not exist in php it is redirected to __call. This method is able to identify how the xml query should be assembled according to its complexity, and sent to the OpenvasManager. The answer is received in xml and transforms it into PHP objects. There is a unique method defined "get_report_csv" to get the result of a report in csv.
@@ -48,11 +92,7 @@ print_r($ov->get_version());
 #### Get targets
 ```php
 
-$options= array(
-	"complexity" => false,
-);
-
-print_r($ov->get_targets($options));
+print_r($ov->get_targets());
 ```
 
 #### Get specific target
