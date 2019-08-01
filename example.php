@@ -4,7 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer 
 
 use Openvas\OpenvasManager;
 
-$ov = new OpenvasManager("localhost","admin","admin");
+$ov = new OpenvasManager("localhost","9390","admin","admin");
 
 //print_r($ov->get_version());
 

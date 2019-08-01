@@ -49,7 +49,6 @@ class OpenvasManager {
 						'allow_self_signed' => true
 				)
 		));
-
 		// Response and Errors
 		$errno = null;
 		$errstr = null;
@@ -101,7 +100,7 @@ class OpenvasManager {
  * method chaining. ie: $call->get_version
  * result in a endpoint location of <get_version/>.
  * @param   string   $location The api endpoint to call.
- * @param   string[] $slug     Any arguments to parse as part of the location
+ * @param   string[] $options     Any arguments to parse as part of the location
  */
 	public function __call($command, $options)
 	{

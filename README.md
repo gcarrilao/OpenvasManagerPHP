@@ -35,6 +35,8 @@ Exist a defined complexity between simples and complex xml's. All querys are cre
 ```
 ### Use mode
 
+The methods work as follows: The __call method was redefined. When a method does not exist in php it is redirected to __call. This method is able to identify how the xml query should be assembled according to its complexity, and sent to the OpenvasManager. The answer is received in xml and transforms it into PHP objects. There is a unique method defined "get_report_csv" to get the result of a report in csv.
+
 #### Get version
 ```php
 $ov = new OpenvasManager("localhost","9390","admin","admin");
@@ -102,5 +104,3 @@ print_r($ov->get_reports($options));
 ```php
 $ov->get_report_csv("92a80a0a-bf25-4927-ae99-f8a9d5e3ed9d");
 ```
-
-
