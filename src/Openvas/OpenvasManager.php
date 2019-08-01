@@ -90,6 +90,7 @@ class OpenvasManager {
 		$this->autenticate($cx);
 		fwrite($cx,$cmd);
 		$response = $this->read_stream_to_buffer($cx);
+		fclose($cx);
 		$response = json_decode(json_encode(simplexml_load_string($response)));
 		return $response;
 	}
