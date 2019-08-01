@@ -20,11 +20,11 @@ class OpenvasManager {
 		Configure parameters to connect with OMP (openvas manager protocol)
 
 	*/
-	function __construct ($host,$port,$username,$password){
+	function __construct ($host=null,$port=null,$username=null,$password=null){
 
 
-		if ((!isset($host)) or (!isset($port)) or (!isset($username))){
-				throw new Exception("Error: All fields are required");
+		if ((!isset($host)) or (!isset($port)) or (!isset($username) or !(isset($password)))){
+				throw new Exception("Please verify that you have entered the following fields: host, port, username and password. They can't be NULL");
 				exit();
 		}
 		else {
