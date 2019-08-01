@@ -44,7 +44,18 @@ $ov = new OpenvasManager("localhost","9390","admin","admin");
 print_r($ov->get_version());
 
 ```
-#### Get target
+
+#### Get targets
+```php
+
+$options= array(
+	"complexity" => false,
+);
+
+print_r($ov->get_targets($options));
+```
+
+#### Get specific target
 ```php
 
 $options= array(

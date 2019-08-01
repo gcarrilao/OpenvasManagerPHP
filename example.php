@@ -11,10 +11,9 @@ $ov = new OpenvasManager("localhost","9390","admin","admin");
 
 $options= array(
 	"complexity" => false,
-	"host" => "10.3.8.199",
 );
 
-//print_r($ov->get_targets($options));
+print_r($ov->get_targets($options));
 
 
 $options= array(
