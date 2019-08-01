@@ -21,10 +21,13 @@ class OpenvasManager {
 
 	*/
 	function __construct ($host,$port,$username,$password){
-		if (($host == "") or ($port == "") or ($username == "")){
-		throw new Exception("error: all fields are required");
-			exit();
-		} else {
+
+
+		if ((isset($host)) or (isset($port)) or (isset($username))){
+				throw new Exception("Error: All fields are required");
+				exit();
+		}
+		else {
 			$this->host=$host;
 			$this->port=$port;
 			$this->username=$username;
