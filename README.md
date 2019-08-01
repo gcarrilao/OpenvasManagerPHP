@@ -69,7 +69,7 @@ print_r($ov->create_task($options));
 $options= array(
 	"complexity" => true,
 	"name" => "Maquina 2",
-	"hosts" => "10.3.8.196",
+	"hosts" => "192.168.1.196",
 );
 
 
@@ -111,7 +111,7 @@ print_r($ov->get_targets($options));
 $options= array(
 	"complexity" => true,
 	"name" => "Maquina 2",
-	"hosts" => "10.3.8.196",
+	"hosts" => "192.168.1.196",
 );
 
 
