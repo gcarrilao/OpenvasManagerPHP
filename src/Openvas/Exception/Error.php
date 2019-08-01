@@ -4,5 +4,5 @@ namespace Openvas\Exception;
 
 class FailedConnection extends \Exception
 {
-    print("asd")
+    print("Exception error")
 }
