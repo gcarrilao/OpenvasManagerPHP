@@ -25,7 +25,6 @@ class OpenvasManager {
 
 		if ((!isset($host)) or (!isset($port)) or (!isset($username) or !(isset($password)))){
 				throw new Exception("Please verify that you have entered the following fields: host, port, username and password. They can't be NULL");
-				exit();
 		}
 		else {
 			$this->host=$host;

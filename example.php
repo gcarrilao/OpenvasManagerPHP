@@ -8,11 +8,6 @@ $ov = new OpenvasManager("localhost","9390","admin","admin");
 
 print_r($ov->get_version());
 
-
-$options= array(
-	"complexity" => false,
-);
-
 print_r($ov->get_targets($options));
 
 
