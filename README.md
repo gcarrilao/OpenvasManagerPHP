@@ -5,6 +5,7 @@ A middleware between a PHP application and Openvas Manager Protocol.
 ### Authors
 
 Federico Carrilao : federicoca95@gmail.com
+
 Facundo Gregorini : gregojff@gmail.com
 
 ### Complexity
